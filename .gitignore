@@ -1,0 +1,10 @@
+__pycache__/
+*.log
+media/
+local_settings.py
+*.sqlite3
+.env
+.venv
+/static
+.mypy_cache/
+*.sqlite3
