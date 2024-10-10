@@ -14,7 +14,7 @@ class User(AbstractUser):
     def is_following(self, user):
         return user in self.followers.all()
 
-
+from PIL import Image
 
 class UserProfile(models.Model):
     """ Profile data of user """
@@ -22,7 +22,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, 
                                 related_name='profile',
                                 verbose_name='other Details')
-    picture = models.ImageField(upload_to='profile_pictures', blank=True, null=True)
+    picture = models.ImageField(upload_to='profile_pictures', blank=True, null=True,default='profilepic.jpg')
     website = models.URLField(blank=True)
     bio = models.TextField(blank=True)
     phone = models.CharField(max_length=11, blank=True)
@@ -30,6 +30,14 @@ class UserProfile(models.Model):
     
     def __str__(self):
         return self.user.username
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.picture.path)
+        if img.height > 300 or img.width>300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.picture.path)
 
 
 @receiver(post_save, sender=User)

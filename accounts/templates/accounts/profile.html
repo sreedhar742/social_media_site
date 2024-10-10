@@ -1,6 +1,6 @@
 <div class="card">
 	{% if user.profile.picture %}
-		<img class="card-img-top" src='{{ user.profile.picture.url }}'>
+	    <img class="rounded-circle" width="250px" src="{{ user.profile.picture.url }}">
 	{% else %}
 		<div class="container mt-1 text-center"><i class="fas fa-9x fa-user"></i></div>
 	{% endif %}

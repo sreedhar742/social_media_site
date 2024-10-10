@@ -8,3 +8,4 @@ local_settings.py
 /static
 .mypy_cache/
 *.sqlite3
+/migrations
