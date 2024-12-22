@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "socail_media/wsgi.py",
+        "src": "social_media/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
       },
@@ -24,4 +24,4 @@
         "dest": "social_media/wsgi.py"
       }
     ]
-  }
+}
