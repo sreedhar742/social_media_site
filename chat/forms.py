@@ -1,15 +1,10 @@
 from django import forms
-
 from .models import Comment, Post
 
-
 class PostForm(forms.ModelForm):
-	""" Form for handling addition of posts """
-
-	class Meta:
-		model = Post
-		fields = ('picture', 'text')
-
+    class Meta:
+        model = Post
+        fields = ('picture', 'text')
 
 class CommentForm(forms.Form):
 	""" Form for adding comments"""

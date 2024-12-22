@@ -14,8 +14,8 @@
 					<div class="my-4 border-top py-2">
 						<div class="row">
 							<div class="col-md-2 text-center">
-								{% if user.profile.picture %}
-									<img class="card-img-top" style="max-height: 30%; max-width: 40%; border-radius: 50%" src='{{ user.profile.picture.url }}'>
+								{% if user.profile.picture_url %}
+									<img class="card-img-top" style="max-height: 30%; max-width: 40%; border-radius: 50%" src='{{ user.profile.picture_url }}'>
 									{% else %}
 										<div class="container mt-1 text-center"><i class="fas fa-5x fa-user"></i></div>
 								{% endif %}

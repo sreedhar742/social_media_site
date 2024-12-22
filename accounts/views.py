@@ -46,10 +46,12 @@ def edit_profile(request):
     """ edit profile of user """
     
     if request.method == "POST":
-        # instance kwargs passed in sets the user on the modelForm
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
-            form.save()
+            profile = form.save(commit=False)
+            if 'picture' in request.FILES:
+                profile.set_picture(request.FILES['picture'])
+            profile.save()
             return redirect(reverse('accounts:view-profile', args=(request.user.username, )))
     else:
         form = ProfileForm(instance=request.user.profile)

@@ -33,6 +33,8 @@ class RegistrationForm(UserCreationForm):
 
     
 class ProfileForm(forms.ModelForm):
+    picture = forms.ImageField(required=False)
+    
     class Meta:
         model = UserProfile
-        fields=('picture', 'bio', 'phone', 'website', 'address')
+        fields = ('bio', 'phone', 'website', 'address')

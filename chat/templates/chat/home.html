@@ -3,24 +3,22 @@
 {% load widget_tweaks %}
 
 
-{% block title %}
-	Posts
-{% endblock %}
+{% block title %}Posts{% endblock %}
 
 {% block content %}
 	<div class="row">
-		<div class="col-md-8 col-sm-12">
-			<h1 class="py-3 px-2 bg-dark text-light d-flex justify-content-between">Posts<a href="{% url 'chat:add_post' %}"><i class="fas fa-plus text-light"></i></a></h1>
+		<div class="col-md-5 col-sm-10">
+			<h1 class="py-1 px-2 bg-dark text-light d-flex justify-content-between" style="font-size: 1.5rem;">Posts<a href="{% url 'chat:add_post' %}"><i class="fas fa-plus text-light"></i></a></h1>
 			<div class="container bg-grey">
 				{% for post in posts %}
-					<div class=" my-4 card" style="box-shadow: #484646 0px 4px 1px">
+					<div class="my-2 card mx-auto" style="box-shadow: #484646 0px 2px 1px; max-width: 500px;">
 						{% if post.picture %}
-							<div class="card-img-top text-center">
-								<img style="max-width: 99%; height: auto;" src="{{ post.picture.url }}">
+							<div class="card-img-top text-center py-2">
+								<img style="max-width: 90%; max-height: 250px; object-fit: contain;" src="{{ post.picture.url }}">
 							</div>
 						{% endif %}
-						<div class="card-body">
-							<div class="card-title text-right">
+						<div class="card-body py-2 px-2">
+							<div class="card-title text-right mb-1">
 								{% if post.user == request.user %}
 									<strong>Me</strong>
 								{% else %}
@@ -29,11 +27,11 @@
 								</strong>
 								{% endif %}
 							</div>
-							<div class="card-text">
+							<div class="card-text" style="font-size: 0.9rem;">
 								{{ post.text }}
 							</div>
 						</div>
-						<div class="card-footer">
+						<div class="card-footer py-1">
 							<div class="d-flex justify-content-between">
 								<i>{{ post.posted_date }}</i>
 								<a class="btn btn-outline-dark" data-toggle='collapse' href="#comments{{ post.id }}" role="button"  aria-expanded="false" aria-controls="comments{{ post.id }}">
