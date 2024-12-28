@@ -76,6 +76,10 @@
 			color:transparent;
 			background-clip:text;
 		
+			}
+		.logout-btn:hover {
+			color: red !important;
+			transition: color 0.3s ease;
 		}
 	  </style>
 <head>
@@ -110,9 +114,12 @@
 	        	</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="{% url 'accounts:logout' %}">
-	            <i class="fas fa-fw fa-sign-out-alt"></i>Logout
-	          </a>
+	          <form method="post" action="{% url 'accounts:logout' %}" style="display: inline;">
+	            {% csrf_token %}
+	            <button type="submit" class="nav-link logout-btn" style="background: none; border: none;">
+	              <i class="fas fa-fw fa-sign-out-alt"></i>Logout
+	            </button>
+	          </form>
 	        </li>
 	    {% else %}
 	    	<li class="nav-item">
