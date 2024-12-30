@@ -31,16 +31,16 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '.now.sh', 'your-domain.com']
+# ALLOWED_HOSTS = ['.vercel.app', 'localhost', '.now.sh', 'your-domain.com']
 
 # Add CSRF trusted origins
-CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app', 'https://*.now.sh', 'https://your-domain.com']
-
+# CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app', 'https://*.now.sh', 'https://your-domain.com']
+ALLOWED_HOSTS=['*']
 
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -60,7 +60,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -159,7 +159,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Authentication URLS
@@ -178,9 +178,9 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =os.getenv('GOOGLE_CLIENT_ID'),
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('GOOGLE_CLIENT_SECRET'),
-SOCIAL_AUTH_REDIRECT_URI = "http://127.0.0.1:8080/social-auth/complete/google-oauth2/"
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('GOOGLE_CLIENT_ID')  # Remove the trailing comma
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')  # Remove the trailing comma
+SOCIAL_AUTH_REDIRECT_URI =os.getenv('REGISTER_URI')
 # Add these settings for social auth
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'home'
@@ -204,7 +204,14 @@ SOCIALACCOUNT_PROVIDERS = {
         'APP': {
             'client_id': os.getenv('GOOGLE_CLIENT_ID'),
             'secret': os.getenv('GOOGLE_CLIENT_SECRET'),
-            'key': ''
+            'key': '',
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
         }
     }
 }
