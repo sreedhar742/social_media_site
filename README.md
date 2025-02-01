@@ -64,6 +64,3 @@ This is a Django-based social media application that allows users to create post
 
 Contributions are welcome! Please open an issue or submit a pull request for any changes.
 
-## License
-
-This project is licensed under the MIT License.
