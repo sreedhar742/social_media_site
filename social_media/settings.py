@@ -132,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -173,9 +173,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "1088458808733-doeuserc54ikptu0hma212ak7fgab99m.apps.googleusercontent.com"
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
-SOCIAL_AUTH_REDIRECT_URI = "http://127.0.0.1:8080/social-auth/complete/google-oauth2/"
+
 # Add these settings for social auth
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'home'
